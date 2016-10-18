@@ -1,0 +1,82 @@
+table { 
+	table-layout: fixed;
+ }
+
+body {
+  border: 2px solid black;
+}
+
+.container {
+	background-color: black;
+
+}
+
+.team1 {
+	color: #00AAE3;
+	font-size: 30px;
+}
+
+.team2 {
+	color: red;
+	font-size: 30px;
+}
+
+.tulos {
+	color: black;
+	font-size: 30px;
+}
+
+.map {
+	text-align: center;
+	color: white;
+	padding-bottom: 20px;
+}
+
+.frags {
+	color: green;
+}
+
+.assist {
+	color: cyan;
+}
+
+.death {
+	color: red;
+}
+
+.frags_name {
+	color: white;
+}
+
+.assist_name {
+	color: white;
+}
+
+.death_name {
+	color: white;
+}
+
+.player {
+	color: orange;
+}
+
+.kd {
+	color: white;
+}
+
+.hs {
+	color: white;
+}
+
+.team_a_name {
+	color: white;
+}
+
+.team_b_name {
+	color: white;
+}
+
+.score {
+	font-size:26px;
+	padding-top: 20px;
+}
