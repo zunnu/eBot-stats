@@ -36,14 +36,13 @@ public static function find_this_query($sql) {
 	}
 
 	return $the_object_array;
-	//return $result_set;
 }
 
 public function find_game_by_id($game_id) {
 	global $database;
 
 $the_result_array = self::find_this_query("SELECT * FROM matchs WHERE id= $game_id");
-		//jos ei tyhjä               							   else jos ei tyhjä return false ":" = else
+
 return !empty($the_result_array) ? array_shift($the_result_array) : false;
 
 }
@@ -52,7 +51,7 @@ public function find_map_by_id($game_id) {
 	global $database;
 
 $the_result_array = self::find_this_query("SELECT * FROM maps WHERE id= $game_id");
-		//jos ei tyhjä               							   else jos ei tyhjä return false ":" = else
+
 return !empty($the_result_array) ? array_shift($the_result_array) : false;
 
 }
