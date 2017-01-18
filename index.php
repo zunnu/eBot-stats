@@ -1,4 +1,6 @@
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
+
 
 <center><table class="main" border=1>
 <tr>
@@ -33,10 +35,10 @@ require_once("includes/init.php");
 
 }
 
-	//STATS NAPPI
+	//STATS button
     echo "<form method='GET' action='stats.php'>";
     echo "<input type='hidden' name='id' value='".$game->id."'>";
-    echo "<td> <input type='submit' name='Stream' value='Stream/stats'></td>";
+    echo "<td> <input class='btn btn-info btn-block' type='submit' name='Stream' value='Stream/stats'></td>";
     echo "</form>";
     echo "</tr>";
     
