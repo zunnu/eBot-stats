@@ -11,8 +11,12 @@ Upload files to your webserver. <br />
 Edit config.php from includes folder.
 
 <h2>Todo</h2>
- - Item 1
- - Item 2
+- Pagination to indedx page
+- Match search and seasons to index page
+- Round series
+- Favorite weapon
+- ~~Team total ammount of kills~~
+- Country flag next to team name
 
 <h2>Demo screenshot</h2>
 
