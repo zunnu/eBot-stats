@@ -17,6 +17,13 @@ public $death;
 public $hs;
 public $players;
 public $team;
+public $total_kills_team_a;
+public $total_kills_team_b;
+public $total_assist_team_a;
+public $total_assist_team_b;
+public $total_death_team_a;
+public $total_death_team_b;
+
 
 public static function find_all_games() {
 
@@ -64,6 +71,60 @@ public function find_players_by_id($game_id) {
 	$sql .= " ORDER BY nb_kill DESC";
 
 	return self::find_this_query($sql);
+
+}
+
+public function count_team_a_kills($game_id) {
+	global $database;
+
+$the_result_array = self::find_this_query("SELECT team, SUM(nb_kill) AS total_kills_team_a FROM players WHERE match_id= $game_id AND team = 'a'");
+
+return !empty($the_result_array) ? array_shift($the_result_array) : false;
+
+}
+
+public function count_team_b_kills($game_id) {
+	global $database;
+
+$the_result_array = self::find_this_query("SELECT team, SUM(nb_kill) AS total_kills_team_b FROM players WHERE match_id= $game_id AND team = 'b'");
+
+return !empty($the_result_array) ? array_shift($the_result_array) : false;
+
+}
+
+public function count_team_a_assist($game_id) {
+	global $database;
+
+$the_result_array = self::find_this_query("SELECT team, SUM(assist) AS total_assist_team_a FROM players WHERE match_id= $game_id AND team = 'a'");
+
+return !empty($the_result_array) ? array_shift($the_result_array) : false;
+
+}
+
+public function count_team_b_assist($game_id) {
+	global $database;
+
+$the_result_array = self::find_this_query("SELECT team, SUM(assist) AS total_assist_team_b FROM players WHERE match_id= $game_id AND team = 'b'");
+
+return !empty($the_result_array) ? array_shift($the_result_array) : false;
+
+}
+
+public function count_team_a_death($game_id) {
+	global $database;
+
+$the_result_array = self::find_this_query("SELECT team, SUM(death) AS total_death_team_a FROM players WHERE match_id= $game_id AND team = 'a'");
+
+return !empty($the_result_array) ? array_shift($the_result_array) : false;
+
+}
+
+public function count_team_b_death($game_id) {
+	global $database;
+
+$the_result_array = self::find_this_query("SELECT team, SUM(death) AS total_death_team_b FROM players WHERE match_id= $game_id AND team = 'b'");
+
+return !empty($the_result_array) ? array_shift($the_result_array) : false;
 
 }
 
