@@ -11,14 +11,8 @@ Upload files to your webserver. <br />
 Edit config.php from includes folder.
 
 <h2>Todo</h2>
-<ul>
-	<li>Pagination to index page</li>
-	<li>Match search and seasons to index page</li>
-	<li>Round series</li>
-	<li>Favorite weapon</li>
-	<li>~~Team total ammount of kills~~</li>
-	<li>Country flag next to team name</li>
-</ul>
+ - Item 1
+ - Item 2
 
 <h2>Demo screenshot</h2>
 
