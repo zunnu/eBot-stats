@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href=" css/stream.css" rel="stylesheet">
+    <link href="css/stream.css" rel="stylesheet">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -21,11 +21,8 @@ require_once("includes/init.php");
 $search= $_GET['id'];
 
 $found_game = Game::find_game_by_id($search);
- //   echo $found_game->id;
-//echo "<br>";
 
 $found_map = Game::find_map_by_id($search);
- //   echo $found_map->map_name;
 
 
 echo '<center>';
@@ -86,8 +83,20 @@ foreach ($players as $player) {
 
  }
  } //end foreach
+ 
+// total team a
+ $kills_team_a = Game::count_team_a_kills($search);
+ $assist_team_a = Game::count_team_a_assist($search);
+ $death_team_a = Game::count_team_a_death($search);
+ 
+ echo '<tr>';
+    echo '<td class="total">Total</td>';
+    echo '<td class="total_kills">'.$kills_team_a->total_kills_team_a.'</td>';
+    echo '<td class="total_assist">'.$assist_team_a->total_assist_team_a.'</td>';
+    echo '<td class="total_death">'.$death_team_a->total_death_team_a.'</td>';
+ echo '</tr>';
 
-     echo '<table class="table table-condensed">
+    echo '<table class="table table-condensed">
       <thead>
       <tr>
         <th class="team_b_name">'.$found_game->team_b_name.'</th>
@@ -119,6 +128,21 @@ $headshot = round($player->hs / $player->nb_kill * 100, 2);
 
 }
 }//end foreach
+
+// total team b
+ $kills_team_b = Game::count_team_b_kills($search);
+ $assist_team_b = Game::count_team_b_assist($search);
+ $death_team_b = Game::count_team_b_death($search);
+
+echo '<tr>';
+    echo '<td class="total">Total</td>';
+    echo '<td class="total_kills">'.$kills_team_b->total_kills_team_b.'</td>';
+    echo '<td class="total_assist">'.$assist_team_b->total_assist_team_b.'</td>';
+    echo '<td class="total_death">'.$death_team_b->total_death_team_b.'</td>';
+echo '</tr>';
+
 ?>
 
-
+</div>
+</body>
+</html>
