@@ -16,7 +16,7 @@ Edit config.php from includes folder.
 	<li>Match search and seasons to index page</li>
 	<li>Round series</li>
 	<li>Favorite weapon</li>
-	<li>Team total ammount of kills</li>
+	~~<li>Team total ammount of kills</li>~~
 	<li>Country flag next to team name</li>
 </ul>
 
