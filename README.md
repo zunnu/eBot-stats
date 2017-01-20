@@ -11,7 +11,7 @@ Upload files to your webserver. <br />
 Edit config.php from includes folder.
 
 <h2>Todo</h2>
-- Pagination to indedx page
+- Pagination to index page
 - Match search and seasons to index page
 - Round series
 - Favorite weapon
