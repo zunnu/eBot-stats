@@ -75,3 +75,22 @@ body {
 	font-size:26px;
 	padding-top: 20px;
 }
+
+/* Totals */
+
+.total {
+	color: white;
+	font-weight: bold;
+}
+
+.total_kills {
+	color: white;
+}
+
+.total_assist {
+	color: white;
+}
+
+.total_death {
+	color: white;
+}
