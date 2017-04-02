@@ -65,10 +65,14 @@ body {
 
 .team_a_name {
 	color: white;
+	width: 286px;
+	overflow: hidden;
 }
 
 .team_b_name {
 	color: white;
+	width: 286px;
+	overflow: hidden;
 }
 
 .score {
@@ -93,4 +97,20 @@ body {
 
 .total_death {
 	color: white;
+}
+
+.team_a_name img {
+	padding-left: 4px;
+}
+
+.team_b_name img {
+	padding-left: 4px;
+}
+
+.weapon {
+	color: white;
+}
+
+.weapon img {
+
 }
