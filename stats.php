@@ -47,19 +47,22 @@ echo '</div>';
 echo '<h3 class="map"> '.$found_map->map_name.' </h3>';
 
 echo '</center>';
-
     echo '<table class="table table-condensed">
     <thead>
-      <tr>
-        <th class="team_a_name">'.$found_game->team_a_name.'</th>
-        <th class="frags_name">Frags</th>
+      <tr>';
+    if (file_exists('img/flags/'.$found_game->team_a_flag.'.png')) {
+        echo '<th class="team_a_name">'.$found_game->team_a_name.'<img src="img/flags/'.$found_game->team_a_flag.'.png"</th>';
+    } else {
+        echo '<th class="team_a_name">'.$found_game->team_a_name.'</th>';
+    }
+   echo '<th class="frags_name">Frags</th>
         <th class="assist_name">Assists</th>
         <th class="death_name">Deaths</th>
         <th class="kd">K/D</th>
-        <th class="hs">Headshot %</th>
+        <th class="hs">HS %</th>
+        <th class="weapon">Best Weapon</th>
       <thead>
       </tr>';
-
 
 $players = Game::find_players_by_id($search);
 
@@ -67,6 +70,14 @@ foreach ($players as $player) {
 
   $kd = round($player->nb_kill / $player->death, 2);
   $headshot = round($player->hs / $player->nb_kill * 100, 2);
+
+$killer_id = $player->id;
+
+$weapons = Game::favorite_weapon($search, $killer_id);
+
+  while($row = mysqli_fetch_array($weapons)) {
+
+    $weapon_name = $row['weapon'];
 
  if($player->team =='a') {
 
@@ -78,11 +89,17 @@ foreach ($players as $player) {
         echo '<td class="death">'.$player->death.'</td>';
         echo '<td class="kd">'.$kd.'</td>';
         echo '<td class="hs">'.$headshot.'%</td>';
+    if (file_exists('img/weapons/'.$weapon_name.'.png')) {
+        echo '<td class="weapon"><img src="img/weapons/'.$weapon_name.'.png"'.'</td>';
+    } else {
+        echo '<td class="weapon">'.$weapon_name.'</td>';
+    }
         echo '</tr>';
 
 
- }
- } //end foreach
+}
+}
+} //end foreach
  
 // total team a
  $kills_team_a = Game::count_team_a_kills($search);
@@ -98,13 +115,18 @@ foreach ($players as $player) {
 
     echo '<table class="table table-condensed">
       <thead>
-      <tr>
-        <th class="team_b_name">'.$found_game->team_b_name.'</th>
-        <th class="frags_name">Frags</th>
+      <tr>';
+    if (file_exists('img/flags/'.$found_game->team_b_flag.'.png')) {
+        echo '<th class="team_b_name">'.$found_game->team_b_name.'<img src="img/flags/'.$found_game->team_b_flag.'.png"</th>';
+    } else {
+        echo '<th class="team_b_name">'.$found_game->team_a_name.'</th>';
+    }
+   echo '<th class="frags_name">Frags</th>
         <th class="assist_name">Assists</th>
         <th class="death_name">Deaths</th>
         <th class="kd">K/D</th>
-        <th class="hs">Headshot %</th>
+        <th class="hs">HS %</th>
+        <th class="weapon">Best Weapon</th>
       <thead>
       </tr>';
 
@@ -112,6 +134,14 @@ foreach ($players as $player) {
 
 $kd = round($player->nb_kill / $player->death, 2);
 $headshot = round($player->hs / $player->nb_kill * 100, 2);
+
+$killer_id = $player->id;
+
+$weapons = Game::favorite_weapon($search, $killer_id);
+
+  while($row = mysqli_fetch_array($weapons)) {
+
+    $weapon_name = $row['weapon'];
 
  if($player->team =='b') {
 
@@ -122,10 +152,16 @@ $headshot = round($player->hs / $player->nb_kill * 100, 2);
         echo '<td class="death">'.$player->death.'</td>';
         echo '<td class="kd">'.$kd.'</td>';
         echo '<td class="hs">'.$headshot.'%</td>';
+    if (file_exists('img/weapons/'.$weapon_name.'.png')) {
+        echo '<td class="weapon"><img src="img/weapons/'.$weapon_name.'.png"'.'</td>';
+    } else {
+        echo '<td class="weapon">'.$weapon_name.'</td>';
+    }
         echo "</tr>";
 
 
 
+}
 }
 }//end foreach
 
