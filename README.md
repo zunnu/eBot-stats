@@ -10,7 +10,7 @@ Demo: http://match.csgofinland.fi/
 Upload files to your webserver. <br />
 Edit config.php from includes folder.
 
-# Open Broadcaster Software Studio (OBS Studio) demo settings #
+### Open Broadcaster Software Studio (OBS Studio) demo settings ###
 Download and install OBS from https://obsproject.com/  
 Make sure you have browser plugin installed.
 
@@ -27,7 +27,7 @@ After this add new game capture source and add csgo.
 ### Todo ###
 * ~~Pagination to index page~~
 * Match search and seasons to index page
-* Round series
+* ~~Round series~~
 * ~~Favorite weapon~~
 * ~~Team total ammount of kills~~
 * ~~Country flag next to team name~~

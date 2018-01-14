@@ -55,12 +55,12 @@ echo '</center>';
     } else {
         echo '<th class="team_a_name">'.$found_game->team_a_name.'</th>';
     }
-   echo '<th class="frags_name">Frags</th>
-        <th class="assist_name">Assists</th>
-        <th class="death_name">Deaths</th>
-        <th class="kd">K/D</th>
-        <th class="hs">HS %</th>
-        <th class="weapon">Best Weapon</th>
+   echo '<th class="text_color">Frags</th>
+        <th class="text_color">Assists</th>
+        <th class="text_color">Deaths</th>
+        <th class="text_color">K/D</th>
+        <th class="text_color">HS %</th>
+        <th class="text_color">Best Weapon</th>
       <thead>
       </tr>';
 
@@ -71,7 +71,9 @@ foreach ($players as $player) {
   if($player->team =='a') {
 
     $kd = round($player->nb_kill / $player->death, 2);
-    $headshot = round($player->hs / $player->nb_kill * 100, 2);
+    if($player->hs > "0" && $player->nb_kill > "0") {
+        $headshot = round($player->hs / $player->nb_kill * 100, 2);
+    }
     $killer_id = $player->id;
 
     $weapons = Game::favorite_weapon($search, $killer_id);
@@ -105,7 +107,7 @@ if(mysqli_num_rows($weapons) > 0) {
 }
 echo '</tr>';
 } //end foreach
- 
+
 // total team a
  $kills_team_a = Game::count_team_a_kills($search);
  $assist_team_a = Game::count_team_a_assist($search);
@@ -126,12 +128,12 @@ echo '</tr>';
     } else {
         echo '<th class="team_b_name">'.$found_game->team_b_name.'</th>';
     }
-   echo '<th class="frags_name">Frags</th>
-        <th class="assist_name">Assists</th>
-        <th class="death_name">Deaths</th>
-        <th class="kd">K/D</th>
-        <th class="hs">HS %</th>
-        <th class="weapon">Best Weapon</th>
+   echo '<th class="text_color">Frags</th>
+        <th class="text_color">Assists</th>
+        <th class="text_color">Deaths</th>
+        <th class="text_color">K/D</th>
+        <th class="text_color">HS %</th>
+        <th class="text_color">Best Weapon</th>
       <thead>
       </tr>';
 
@@ -140,7 +142,9 @@ foreach ($players as $player) {
   if($player->team =='b') {
 
     $kd = round($player->nb_kill / $player->death, 2);
-    $headshot = round($player->hs / $player->nb_kill * 100, 2);
+    if($player->hs > "0" && $player->nb_kill > "0") {
+        $headshot = round($player->hs / $player->nb_kill * 100, 2);
+    }
     $killer_id = $player->id;
     $weapons = Game::favorite_weapon($search, $killer_id);
 
@@ -173,6 +177,33 @@ if(mysqli_num_rows($weapons) > 0) {
 }
 echo "</tr>";
 }//end foreach
+
+// Round series
+$rounds = Game::round_series($search);
+
+$round_count = 0;
+
+$count_rounds = Game::count_rounds_played($search);
+$round_series_size = 1140 / ($count_rounds + 1);
+
+echo '<div class="progress">';
+
+foreach ($rounds as $round) {
+    
+    if($round_count == '15') {
+        echo '<div class="progress-bar round_halftime" role="progressbar" style="width: '.$round_series_size.'"></div>';
+    }
+
+    if($round->team_win == 'a') {
+        echo '<div class="progress-bar round_team_a" role="progressbar" style="width: '.$round_series_size.'"></div>';
+        $round_count = $round_count + 1;
+    } elseif ($round->team_win == 'b') {
+        echo '<div class="progress-bar round_team_b" role="progressbar" style="width: '.$round_series_size.'"></div>';
+        $round_count = $round_count + 1;
+    }
+}
+
+echo '</div>';
 
 // total team b
  $kills_team_b = Game::count_team_b_kills($search);

@@ -26,6 +26,8 @@ public $team_b_flag;
 public $killer_id;
 public $weapon;
 public $gun;
+public $max_round;
+public $team_win;
 
 
 public static function find_all_games() {
@@ -176,6 +178,27 @@ public static function favorite_weapon($game_id, $killer_id) {
 		return $result_set;
 
 }
+
+public static function round_series($game_id) {
+	global $database;
+
+		$sql  = "SELECT * FROM round_summary";
+		$sql .= " WHERE match_id = $game_id";
+
+		return self::find_this_query($sql);
+}
+
+public static function count_rounds_played($game_id) {
+	global $database;
+
+		$sql = "SELECT COUNT(*) FROM round_summary";
+		$sql .= " WHERE match_id = $game_id";
+		$result_set = $database->query($sql);
+		$row = mysqli_fetch_array($result_set);
+
+		return array_shift($row);
+
+} //end of count all
 
 } //class finish
 

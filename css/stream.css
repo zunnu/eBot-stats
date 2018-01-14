@@ -38,18 +38,6 @@ body {
 	color: red;
 }
 
-.frags_name {
-	color: white;
-}
-
-.assist_name {
-	color: white;
-}
-
-.death_name {
-	color: white;
-}
-
 .player {
 	color: orange;
 }
@@ -59,6 +47,10 @@ body {
 }
 
 .hs {
+	color: white;
+}
+
+.text_color {
 	color: white;
 }
 
@@ -112,4 +104,24 @@ body {
 
 .weapon img {
 
+}
+
+/*Round colors*/
+
+.round_team_a {
+	background-color: #00AAE3 !important;
+	border-right: 1px solid #16222c; 
+    z-index: 100;
+}
+
+.round_team_b {
+	background-color: red !important;
+	border-right: 1px solid #16222c; 
+    z-index: 100;
+}
+
+.round_halftime {
+	background-color: yellow !important;
+	border-right: 1px solid #16222c; 
+    z-index: 100;
 }
