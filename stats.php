@@ -50,8 +50,8 @@ echo '</center>';
     echo '<table class="table table-condensed">
     <thead>
       <tr>';
-    if (file_exists('img/flags/'.$found_game->team_a_flag.'.png')) {
-        echo '<th class="team_a_name">'.$found_game->team_a_name.'<img src="img/flags/'.$found_game->team_a_flag.'.png"</th>';
+    if (file_exists('img/flags/'.strtolower($found_game->team_a_flag).'.png')) {
+        echo '<th class="team_a_name">'.$found_game->team_a_name.'<img src="img/flags/'.strtolower($found_game->team_a_flag).'.png"</th>';
     } else {
         echo '<th class="team_a_name">'.$found_game->team_a_name.'</th>';
     }
@@ -70,12 +70,19 @@ foreach ($players as $player) {
 
   if($player->team =='a') {
 
-    $kd = round($player->nb_kill / $player->death, 2);
+    if($player->nb_kill > '0' && $player->death > '0') {
+        $kd = round($player->nb_kill / $player->death, 2);
+    } else {
+        $kd = '0';
+    }
+
     if($player->hs > "0" && $player->nb_kill > "0") {
         $headshot = round($player->hs / $player->nb_kill * 100, 2);
+    } else {
+        $headshot = '0';
     }
-    $killer_id = $player->id;
 
+    $killer_id = $player->id;
     $weapons = Game::favorite_weapon($search, $killer_id);
 
 if(mysqli_num_rows($weapons) > 0) {
@@ -123,10 +130,10 @@ echo '</tr>';
     echo '<table class="table table-condensed">
       <thead>
       <tr>';
-    if (file_exists('img/flags/'.$found_game->team_b_flag.'.png')) {
-        echo '<th class="team_b_name">'.$found_game->team_b_name.'<img src="img/flags/'.$found_game->team_b_flag.'.png"</th>';
+    if (file_exists('img/flags/'.strtolower($found_game->team_b_flag).'.png')) {
+        echo '<th class="team_a_name">'.$found_game->team_b_name.'<img src="img/flags/'.strtolower($found_game->team_b_flag).'.png"</th>';
     } else {
-        echo '<th class="team_b_name">'.$found_game->team_b_name.'</th>';
+        echo '<th class="team_a_name">'.$found_game->team_b_name.'</th>';
     }
    echo '<th class="text_color">Frags</th>
         <th class="text_color">Assists</th>
@@ -141,10 +148,18 @@ foreach ($players as $player) {
 
   if($player->team =='b') {
 
-    $kd = round($player->nb_kill / $player->death, 2);
+    if($player->nb_kill > '0' && $player->death > '0') {
+        $kd = round($player->nb_kill / $player->death, 2);
+    } else {
+        $kd = '0';
+    }
+
     if($player->hs > "0" && $player->nb_kill > "0") {
         $headshot = round($player->hs / $player->nb_kill * 100, 2);
+    } else {
+        $headshot = '0';
     }
+
     $killer_id = $player->id;
     $weapons = Game::favorite_weapon($search, $killer_id);
 
@@ -182,9 +197,13 @@ echo "</tr>";
 $rounds = Game::round_series($search);
 
 $round_count = 0;
-
 $count_rounds = Game::count_rounds_played($search);
-$round_series_size = 1140 / ($count_rounds + 1);
+
+if($count_rounds > '0') {
+    $round_series_size = 1140 / ($count_rounds);
+} else {
+    $round_series_size = '0';
+}
 
 echo '<div class="progress">';
 

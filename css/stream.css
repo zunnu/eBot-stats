@@ -91,11 +91,15 @@ body {
 }
 
 .team_a_name img {
-	padding-left: 4px;
+	margin-left: 5px;
+	width: 8%;
+	margin-bottom: 2px;
 }
 
 .team_b_name img {
-	padding-left: 4px;
+	margin-left: 5px;
+	width: 8%;
+	margin-bottom: 2px;
 }
 
 .weapon {
