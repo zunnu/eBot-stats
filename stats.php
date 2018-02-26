@@ -28,18 +28,17 @@ $found_map = Game::find_map_by_id($search);
 echo '<center>';
 echo '<div class=score>';
 
-    if($found_game->score_a > $found_game->score_b) {
+if($found_game->score_a > $found_game->score_b) {
 
-    echo "<td><span class='team1'>" .$found_game->team_a_name." <font color='green'> ".$found_game->score_a." </font>:  <font color='red'> ".$found_game->score_b." </font> <span class='team2'> ".$found_game->team_b_name." </td>";
+    echo "<td><span class='team1'>" .$found_game->team_a_name." <font color='#7FFF00'> ".$found_game->score_a." </font>:  <font color='red'> ".$found_game->score_b." </font> <span class='team2'> ".$found_game->team_b_name." </td>";
               
-}   elseif($found_game->score_a < $found_game->score_b) {
+}elseif($found_game->score_a < $found_game->score_b) {
 
-    echo "<td><span class='team1'>".$found_game->team_a_name." <font color='red'> ".$found_game->score_a." </font>:  <font color='green'> ".$found_game->score_b." </font> <span class='team2'> ".$found_game->team_b_name." </td>";
+    echo "<td><span class='team1'>".$found_game->team_a_name." <font color='red'> ".$found_game->score_a." </font>:  <font color='#7FFF00'> ".$found_game->score_b." </font> <span class='team2'> ".$found_game->team_b_name." </td>";
 
-}   else {
+}else {
 
-    echo "<td><span class='team1'>".$found_game->team_a_name." <font color='blue'> ".$found_game->score_a." </font> &nbsp;:&nbsp; <font color='blue'>".$found_game->score_b."</font> <span class='team2'> ".$found_game->team_b_name." </td>";
-
+    echo "<td><span class='team1'>".$found_game->team_a_name." <font color='orange'> ".$found_game->score_a." </font> &nbsp;:&nbsp; <font color='orange'>".$found_game->score_b."</font> <span class='team2'> ".$found_game->team_b_name." </td>";
 }
 
 echo '</div>';
@@ -78,6 +77,9 @@ foreach ($players as $player) {
 
     if($player->hs > "0" && $player->nb_kill > "0") {
         $headshot = round($player->hs / $player->nb_kill * 100, 2);
+        if (strpos($headshot, '.') !== false) {
+            $headshot = strstr($headshot, '.', true);
+        }
     } else {
         $headshot = '0';
     }
@@ -156,6 +158,9 @@ foreach ($players as $player) {
 
     if($player->hs > "0" && $player->nb_kill > "0") {
         $headshot = round($player->hs / $player->nb_kill * 100, 2);
+        if (strpos($headshot, '.') !== false) {
+            $headshot = strstr($headshot, '.', true);
+        }
     } else {
         $headshot = '0';
     }
